@@ -1,0 +1,8 @@
+---
+- name: 5th Temp
+  hosts: 192.168.101.21
+  tasks:
+    - name: Ensure audit package is installed
+      ansible.builtin.dnf:
+        name: audit
+        state: present
