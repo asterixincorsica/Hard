@@ -7,3 +7,7 @@
         msg: "Reboot needed: {{ selinux_status.reboot_required }}"
       changed_when: "{{ selinux_status.reboot_required | bool }}"
       notify: reboot_host
+  handlers:
+- name: reboot_host
+  ansible.builtin.reboot:
+    reboot_timeout: 360
