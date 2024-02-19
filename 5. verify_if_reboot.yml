@@ -1,0 +1,9 @@
+---
+- name: 5th Temp
+  hosts: 192.168.101.21
+  tasks: 
+    - name: Verify if reboot needed
+      ansible.builtin.debug:
+        msg: "Reboot needed: {{ selinux_status.reboot_required }}"
+      changed_when: "{{ selinux_status.reboot_required | bool }}"
+      notify: reboot_host
