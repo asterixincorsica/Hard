@@ -1,8 +1,15 @@
 ---
-- name: 1st Temp
-  hosts: 192.168.101.21
-  tasks: 
-    - name: Ensure firewall package is installed
-      ansible.builtin.dnf:
-        name: firewalld
-        state: present
+- name: Ensure firewall package is installed
+  hosts: all # Replace with specific host(s) or group
+  become: true
+
+  tasks:
+    - name: Check if firewalld is installed
+      ansible.builtin.stat:
+        path: /usr/sbin/firewalld
+      register: firewalld_check
+
+    - name: Firewall package already installed
+      debug:
+        msg: "Firewalld package already present"
+      when: firewalld_check.stat.exists
