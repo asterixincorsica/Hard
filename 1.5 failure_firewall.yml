@@ -4,12 +4,8 @@
   become: true
 
   tasks:
-    - name: Check if firewalld is installed
-      ansible.builtin.stat:
-        path: /usr/sbin/firewalld
-      register: firewalld_check
-
-    - name: Firewall package already installed
-      debug:
-        msg: "Firewalld package already present"
-      when: firewalld_check.stat.exists
+    - name: Install firewalld package if not found
+      ansible.builtin.dnf:
+        name: firewalld
+        state: present
+      when: not firewalld_check.stat.exists
