@@ -1,0 +1,9 @@
+---
+- name: 11th Temp
+  hosts: 192.168.101.21
+  tasks:
+    - name: Ensure auditd service is up and running
+      ansible.builtin.service:
+        name: auditd
+        state: started
+        enabled: yes
