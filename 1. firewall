@@ -1,0 +1,8 @@
+---
+- name: 1st Temp
+  hosts: 192.168.101.21
+  tasks: 
+    - name: Ensure firewall package is installed
+      ansible.builtin.dnf:
+        name: firewalld
+        state: present
