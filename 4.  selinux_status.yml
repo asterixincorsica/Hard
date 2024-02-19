@@ -1,0 +1,9 @@
+---
+- name: 4th Temp
+  hosts: 192.168.101.21
+  tasks: 
+    - name: Ensure SELinux is enabled and enforcing
+      ansible.posix.selinux:
+        policy: targeted
+        state: enforcing
+      register: selinux_status
