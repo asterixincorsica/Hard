@@ -2,7 +2,6 @@
 - name: Ensure firewall package is installed
   hosts: all # Replace with specific host(s) or group
   become: true
-
   tasks:
     - name: Check if firewalld is installed
       ansible.builtin.stat:
