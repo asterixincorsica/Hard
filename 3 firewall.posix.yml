@@ -1,0 +1,19 @@
+---
+- name: 1st Temp
+  hosts: 192.168.101.21
+  tasks: 
+    - name: Block non-required services
+      ansible.posix.firewalld:
+        service: "{{ item }}"
+        state: disabled
+        permanent: yes
+        immediate: yes
+      loop:
+        - cockpit
+        - dhcpv6-client
+  - name: Enable required services
+    ansible.posix.firewalld:
+      service: "ssh"
+      state: enabled
+      permanent: yes
+      immediate: yes
