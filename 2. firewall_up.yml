@@ -2,7 +2,8 @@
 - name: 2nd Temp
   hosts: 192.168.101.21
   tasks: 
-    - name: Ensure firewall package is installed
-      ansible.builtin.dnf:
+    - name: Ensure firewall service is up and running
+      ansible.builtin.service:
         name: firewalld
-        state: present
+        state: started
+        enabled: yes
